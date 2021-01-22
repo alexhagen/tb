@@ -16,11 +16,11 @@ class TimeBlocker:
             if ((now.minute >= 25 and now.minute <= 29) or 
                 (now.minute >= 55 and now.minute <= 59)):
                     if self.app.title == 'work':
-                        rumps.alert("Break", "Time to take a break", "ok", "cancel")
+                        rumps.notification("Break", "Time to take a break", "ok")
                     self.app.title = 'break'
             else:
                 if self.app.title == 'break':
-                    rumps.alert("Work", "Time to work", "ok", "cancel")
+                    rumps.notification("Work", "Time to work", "ok")
                 self.app.title = 'work'
 
     def set_up_menu(self):
@@ -30,6 +30,9 @@ class TimeBlocker:
     def run(self):
         self.app.run()
 
-if __name__ == "__main__":
+def _run_cli():
     tb = TimeBlocker()
     tb.run()
+
+if __name__ == "__main__":
+    _run_cli()
