@@ -1,2 +1,6 @@
 doc/build/*
 *.pyc
+*.egg-info
+*.vscode*
+dist/*
+build/*

@@ -1,7 +1,10 @@
-import rumps
+#!/usr/env/bin python
+"""TimeBlocker - a small menu app that changes title for time blocking."""
 import datetime
+import rumps
 
 class TimeBlocker:
+    """A small menu app object that changes title for time blocking."""
     def __init__(self):
         self.config = dict(app_name='TimeBlocker')
         self.app = rumps.App(self.config['app_name'])
@@ -10,29 +13,36 @@ class TimeBlocker:
         #buttons
         #self.app.menu = [buttons]
 
-    def on_tick(self, sender):
+    def on_tick(self, _):
+        """Check minute and perform actions if a break."""
         now = datetime.datetime.now()
-        if now.weekday() <= 5:
-            if ((now.minute >= 25 and now.minute <= 29) or 
-                (now.minute >= 55 and now.minute <= 59)):
-                    if self.app.title == 'work':
-                        rumps.notification("Break", "Time to take a break", "ok")
-                    self.app.title = 'break'
+        is_weekday = (now.weekday() <= 5)
+        is_workhour = (now.hour >= 7 and now.hour <= 16)
+        is_top_of_the_hour = (now.minute >= 25 and now.minute <= 29)
+        is_bottom_of_the_hour = (now.minute >= 55 and now.minute <= 59)
+        is_break = is_top_of_the_hour or is_bottom_of_the_hour
+        if is_weekday and is_workhour:
+            if is_break:
+                if self.app.title == 'work':
+                    rumps.notification("Break", "Time to take a break", "ok")
+                self.app.title = 'break'
             else:
                 if self.app.title == 'break':
-                    rumps.notification("Work", "Time to work", "ok")
+                    rumps.notification("Work", "Time to work", "")
                 self.app.title = 'work'
 
     def set_up_menu(self):
+        """Set up the menu items for the menu bar."""
         self.app.title = "work"
         self.timer.start()
 
     def run(self):
+        """Run the the main loop of the app."""
         self.app.run()
 
 def _run_cli():
-    tb = TimeBlocker()
-    tb.run()
+    time_blocker = TimeBlocker()
+    time_blocker.run()
 
 if __name__ == "__main__":
     _run_cli()
