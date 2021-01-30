@@ -9,7 +9,7 @@ from setuptools import setup
 
 APP = ['tb/__init__.py']
 DATA_FILES = []
-OPTIONS = {}
+OPTIONS = {'iconfile': 'assets/icon.icns'}
 
 setup(
     name='TimeBlocker',
