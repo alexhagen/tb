@@ -33,9 +33,9 @@
        inkscape:collect="always"
        xlink:href="#linearGradient853"
        id="linearGradient855"
-       x1="-5.8605423"
-       y1="89.609589"
-       x2="78.833733"
+       x1="-36.626339"
+       y1="88.853386"
+       x2="80.756592"
        y2="88.853386"
        gradientUnits="userSpaceOnUse" />
     <filter
@@ -166,7 +166,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>

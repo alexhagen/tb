@@ -10,5 +10,7 @@ doc: doc/source/conf.py doc/Makefile doc/source/*.rst $(PYFILES)
 
 deploy: FORCE
 	cd assets; \
-	./resize.sh
+	./resize.sh icon.svg
 	python setup.py py2app
+
+FORCE:
